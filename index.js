@@ -10,7 +10,12 @@ const port = process.env.PORT || 5000;
 console.log("DB user name:", process.env.DB_USER);
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+    origin: ['https://fithub-tau-two.vercel.app'],
+    methods: ['GET', 'POST'],
+    credentials: true,
+  };
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //Verify token
