@@ -86,11 +86,17 @@ async function run() {
 
     //USER Routes=================================================================================================================
     app.post('/new-user', async (req, res) => {
-        const newUser = req.body;
+        try {
+            const newUser = req.body;
+            const result = await userCollection.insertOne(newUser);
+            res.status(201).send(result);
+        } catch (error) {
+            console.error('Error inserting user:', error);
+            res.status(500).send({ error: 'Failed to insert user' });
+        }
+    });
 
-        const result = await userCollection.insertOne(newUser);
-        res.send(result);
-    })
+    
     app.post('/api/set-token', (req, res) => {
         const user = req.body;
         const token = jwt.sign(user, process.env.ACCESS_KEY, { expiresIn: '24h' })
