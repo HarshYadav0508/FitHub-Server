@@ -12,7 +12,7 @@ console.log("DB user name:", process.env.DB_USER);
 // Middleware
 const corsOptions = {
     origin: 'https://fithub-tau-two.vercel.app', 
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], 
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
 app.use(cors(corsOptions));
